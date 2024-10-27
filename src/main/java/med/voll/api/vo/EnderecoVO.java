@@ -84,4 +84,12 @@ public class EnderecoVO {
 		this.cidade = cidade;
 	}
 
+	@Override
+	public String toString() {
+		return "EnderecoVO [logradouro=" + logradouro + ", bairro=" + bairro + ", cep=" + cep + ", numero=" + numero
+				+ ", uf=" + uf + ", complemento=" + complemento + ", cidade=" + cidade + "]";
+	}
+	
+	
+
 }

@@ -1,13 +1,16 @@
 package med.voll.api.vo;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import med.voll.api.dtos.CadastroMedicoDTO;
 import med.voll.api.dtos.Especialidade;
@@ -28,7 +31,10 @@ public class MedicoVO {
 	private Especialidade especialidade;
 
 	@Embedded
-	private EnderecoVO endereco;
+	private EnderecoVO endereco; //para organização do código
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "medico")
+	private List<PacienteVO> listaPacientes;
 
 	public MedicoVO() {
 
@@ -115,5 +121,14 @@ public class MedicoVO {
 		MedicoVO other = (MedicoVO) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "MedicoVO [id=" + id + ", nome=" + nome + ", email=" + email + ", crm=" + crm + ", telefone=" + telefone
+				+ ", especialidade=" + especialidade + ", endereco=" + endereco + ", listaPacientes=" + listaPacientes
+				+ "]";
+	}
+	
+	
 
 }

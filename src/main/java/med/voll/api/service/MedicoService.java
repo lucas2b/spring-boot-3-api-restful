@@ -1,6 +1,7 @@
 package med.voll.api.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +19,16 @@ public class MedicoService {
 	private MedicoRepository medicoRepository;
 	
 	@Transactional
-	public void cadastrar(CadastroMedicoDTO dados) {
-		medicoRepository.save(new MedicoVO(dados));
+	public MedicoVO cadastrar(CadastroMedicoDTO dados) {
+		return medicoRepository.save(new MedicoVO(dados));
 	}
 	
 	public List<DadosListagemMedico> listarTodos(){
-		//return medicoRepository.findAll().stream().map(DadosListagemMedico::new).toList();
 		return medicoRepository.findAll().stream().map(DadosListagemMedico::new).toList();
+	}
+	
+	public Optional<MedicoVO> buscarMedicoPorId(Long id){
+		return medicoRepository.findById(id);
 	}
 
 }
