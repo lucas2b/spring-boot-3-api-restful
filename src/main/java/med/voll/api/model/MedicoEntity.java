@@ -22,6 +22,7 @@ public class MedicoEntity {
 	private String nome;
 	private String email;
 	private String crm;
+	private String telefone;
 
 	@Enumerated
 	private Especialidade especialidade;
@@ -39,6 +40,7 @@ public class MedicoEntity {
 		this.crm = dados.crm();
 		this.especialidade = dados.especialidade();
 		this.endereco = new EnderecoEntity(dados.endereco());
+		this.telefone = dados.telefone();
 	}
 
 	public Long getId() {
@@ -87,6 +89,14 @@ public class MedicoEntity {
 
 	public void setEndereco(EnderecoEntity endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	@Override

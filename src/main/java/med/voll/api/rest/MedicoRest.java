@@ -6,25 +6,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import med.voll.api.dtos.CadastroMedicoDTO;
-import med.voll.api.model.EnderecoEntity;
-import med.voll.api.model.MedicoEntity;
-import med.voll.api.repository.MedicoRepository;
+import med.voll.api.service.MedicoService;
 
 @RestController
 @RequestMapping("/medicos")
 public class MedicoRest {
 	
 	@Autowired
-	private MedicoRepository medicoRepository;
+	private MedicoService medicoService;
 	
 	@PostMapping
-	public void cadastrar(@RequestBody CadastroMedicoDTO dados) {
-		System.out.println(dados);
-		medicoRepository.save(new MedicoEntity(dados));
-		
+	public void cadastrar(@RequestBody @Valid CadastroMedicoDTO dados) {
+		medicoService.cadastrar(dados);
 	}
-	
-	
-
 }
