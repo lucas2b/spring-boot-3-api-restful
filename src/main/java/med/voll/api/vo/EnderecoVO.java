@@ -1,10 +1,10 @@
-package med.voll.api.model;
+package med.voll.api.vo;
 
 import jakarta.persistence.Embeddable;
 import med.voll.api.dtos.EnderecoDTO;
 
 @Embeddable
-public class EnderecoEntity {
+public class EnderecoVO {
 
 	private String logradouro;
 	private String bairro;
@@ -14,7 +14,7 @@ public class EnderecoEntity {
 	private String complemento;
 	private String cidade;
 
-	public EnderecoEntity(EnderecoDTO enderecoDTO) {
+	public EnderecoVO(EnderecoDTO enderecoDTO) {
 		this.logradouro = enderecoDTO.logradouro();
 		this.bairro = enderecoDTO.bairro();
 		this.cep = enderecoDTO.cep();
@@ -28,7 +28,7 @@ public class EnderecoEntity {
 		return logradouro;
 	}
 
-	public EnderecoEntity() {
+	public EnderecoVO() {
 		super();
 	}
 

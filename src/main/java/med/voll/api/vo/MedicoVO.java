@@ -1,4 +1,4 @@
-package med.voll.api.model;
+package med.voll.api.vo;
 
 import java.util.Objects;
 
@@ -14,7 +14,7 @@ import med.voll.api.dtos.Especialidade;
 
 @Entity(name = "MedicoEntity")
 @Table(name = "medicos")
-public class MedicoEntity {
+public class MedicoVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,18 +28,18 @@ public class MedicoEntity {
 	private Especialidade especialidade;
 
 	@Embedded
-	private EnderecoEntity endereco;
+	private EnderecoVO endereco;
 
-	public MedicoEntity() {
+	public MedicoVO() {
 
 	}
 
-	public MedicoEntity(CadastroMedicoDTO dados) {
+	public MedicoVO(CadastroMedicoDTO dados) {
 		this.nome = dados.nome();
 		this.email = dados.email();
 		this.crm = dados.crm();
 		this.especialidade = dados.especialidade();
-		this.endereco = new EnderecoEntity(dados.endereco());
+		this.endereco = new EnderecoVO(dados.endereco());
 		this.telefone = dados.telefone();
 	}
 
@@ -83,11 +83,11 @@ public class MedicoEntity {
 		this.especialidade = especialidade;
 	}
 
-	public EnderecoEntity getEndereco() {
+	public EnderecoVO getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(EnderecoEntity endereco) {
+	public void setEndereco(EnderecoVO endereco) {
 		this.endereco = endereco;
 	}
 
@@ -112,7 +112,7 @@ public class MedicoEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MedicoEntity other = (MedicoEntity) obj;
+		MedicoVO other = (MedicoVO) obj;
 		return Objects.equals(id, other.id);
 	}
 

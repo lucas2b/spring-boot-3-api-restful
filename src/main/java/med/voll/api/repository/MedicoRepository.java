@@ -2,9 +2,9 @@ package med.voll.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import med.voll.api.model.MedicoEntity;
+import med.voll.api.vo.MedicoVO;
 
-public interface MedicoRepository extends JpaRepository<MedicoEntity, Long> {
+public interface MedicoRepository extends JpaRepository<MedicoVO, Long> {
 	
 	
 
