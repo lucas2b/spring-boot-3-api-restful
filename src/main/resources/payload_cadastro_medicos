@@ -1,0 +1,90 @@
+{
+"nome": "Rodrigo Ferreira",
+"email": "rodrigo.ferreira@voll.med",
+"crm": "123456",
+"especialidade": "ORTOPEDIA",
+"endereco": {
+    "logradouro": "rua 1",
+    "bairro": "bairro",
+    "cep": "12345678",
+    "cidade": "Brasilia",
+    "uf": "DF",
+    "numero": "1"
+    },
+"telefone" : "54981241992"
+}
+
+------------------------------------------------------
+
+{
+    "nome": "Mariana Souza",
+    "email": "mariana.souza@voll.med",
+    "crm": "654321",
+    "especialidade": "DERMATOLOGIA",
+    "endereco": {
+        "logradouro": "avenida 2",
+        "bairro": "centro",
+        "cep": "87654321",
+        "cidade": "Rio de Janeiro",
+        "uf": "RJ",
+        "numero": "100"
+    },
+    "telefone": "21987654321"
+}
+
+
+------------------------------------------------------
+
+{
+    "nome": "Carlos Oliveira",
+    "email": "carlos.oliveira@voll.med",
+    "crm": "789012",
+    "especialidade": "CARDIOLOGIA",
+    "endereco": {
+        "logradouro": "rua das Flores",
+        "bairro": "jardim",
+        "cep": "11223344",
+        "cidade": "São Paulo",
+        "uf": "SP",
+        "numero": "50"
+    },
+    "telefone": "11987651234"
+}
+
+
+------------------------------------------------------
+
+{
+    "nome": "Patrícia Lima",
+    "email": "patricia.lima@voll.med",
+    "crm": "987654",
+    "especialidade": "GINECOLOGIA",
+    "endereco": {
+        "logradouro": "avenida Brasil",
+        "bairro": "vila nova",
+        "cep": "44556677",
+        "cidade": "Curitiba",
+        "uf": "PR",
+        "numero": "200"
+    },
+    "telefone": "41987654321"
+}
+
+
+------------------------------------------------------
+
+{
+    "nome": "Roberto Mendes",
+    "email": "roberto.mendes@voll.med",
+    "crm": "123789",
+    "especialidade": "ORTOPEDIA",
+    "endereco": {
+        "logradouro": "rua Independência",
+        "bairro": "santa maria",
+        "cep": "55667788",
+        "cidade": "Porto Alegre",
+        "uf": "RS",
+        "numero": "300"
+    },
+    "telefone": "51987651234"
+}
