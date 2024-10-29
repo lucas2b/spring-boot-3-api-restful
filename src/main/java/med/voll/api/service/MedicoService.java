@@ -25,6 +25,12 @@ public class MedicoService {
 		return medicoRepository.save(new MedicoVO(dados));
 	}
 	
+	@Transactional
+	public MedicoVO atualizar(MedicoVO medicoVO) {
+		return medicoRepository.save(medicoVO);
+	}
+	
+	//sem paginação
 	public List<DadosListagemMedico> listarTodos(){
 		return medicoRepository.findAll().stream().map(DadosListagemMedico::new).toList();
 	}

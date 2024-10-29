@@ -65,6 +65,11 @@ public class PacienteVO {
 	public void setMedico(MedicoVO medico) {
 		this.medico = medico;
 	}
+
+	@Override
+	public String toString() {
+		return "PacienteVO [id=" + id + ", nome=" + nome + ", email=" + email +"]";
+	}
 	
 	
 

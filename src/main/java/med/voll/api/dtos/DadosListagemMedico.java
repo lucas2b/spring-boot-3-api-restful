@@ -2,9 +2,10 @@ package med.voll.api.dtos;
 
 import med.voll.api.vo.MedicoVO;
 
-public record DadosListagemMedico(String nome, String email, String crm, Especialidade especialidade) {
+public record DadosListagemMedico(Long id, String nome, String email, String crm, Especialidade especialidade) {
 
-	public DadosListagemMedico(MedicoVO medicoEntity) {
-		this(medicoEntity.getNome(), medicoEntity.getEmail(), medicoEntity.getCrm(), medicoEntity.getEspecialidade()); //chama o construtor do record
+	//construtor do record
+	public DadosListagemMedico(MedicoVO medicoVO) {
+		this(medicoVO.getId(), medicoVO.getNome(), medicoVO.getEmail(), medicoVO.getCrm(), medicoVO.getEspecialidade()); //chama o construtor do record
 	}
 }

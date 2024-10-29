@@ -3,6 +3,7 @@ package med.voll.api.vo;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
@@ -33,8 +34,16 @@ public class MedicoVO {
 	@Embedded
 	private EnderecoVO endereco; //para organização do código
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "medico")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "medico", cascade = CascadeType.ALL)
 	private List<PacienteVO> listaPacientes;
+
+	public List<PacienteVO> getListaPacientes() {
+		return listaPacientes;
+	}
+
+	public void setListaPacientes(List<PacienteVO> listaPacientes) {
+		this.listaPacientes = listaPacientes;
+	}
 
 	public MedicoVO() {
 
@@ -127,6 +136,12 @@ public class MedicoVO {
 		return "MedicoVO [id=" + id + ", nome=" + nome + ", email=" + email + ", crm=" + crm + ", telefone=" + telefone
 				+ ", especialidade=" + especialidade + ", endereco=" + endereco + ", listaPacientes=" + listaPacientes
 				+ "]";
+	}
+	
+
+	public void adicionarPaciente(PacienteVO paciente) {
+		paciente.setMedico(this);
+		listaPacientes.add(paciente);
 	}
 	
 	
