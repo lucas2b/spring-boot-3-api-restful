@@ -55,5 +55,10 @@ public class MedicoService {
 			throw new ApplicationException("Médico não localizado na base de dados");
 		}
 	}
+	
+	@Transactional
+	public void excluir(Long id) {
+		medicoRepository.deleteById(id);
+	}
 
 }

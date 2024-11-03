@@ -3,7 +3,9 @@ package med.voll.api.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +43,11 @@ public class MedicoRest {
 		}catch(ApplicationException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@DeleteMapping("/{id}")
+	public void excluir(@PathVariable Long id) {
+		medicoService.excluir(id);
 	}
 }
 
