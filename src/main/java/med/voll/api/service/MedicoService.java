@@ -6,11 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import med.voll.api.dtos.AtualizacaoMedicoDTO;
 import med.voll.api.dtos.CadastroMedicoDTO;
+import med.voll.api.dtos.DadosDetalhamentoMedicoDTO;
 import med.voll.api.dtos.DadosListagemMedico;
 import med.voll.api.exceptions.ApplicationException;
 import med.voll.api.repository.MedicoRepository;
@@ -34,7 +36,7 @@ public class MedicoService {
 	}
 	
 	public Page<DadosListagemMedico> listar(Pageable paginacao){
-		return medicoRepository.findAll(paginacao).map(DadosListagemMedico::new);
+		return  medicoRepository.findAll(paginacao).map(DadosListagemMedico::new);
 	}
 	
 	public Optional<MedicoVO> buscarMedicoPorId(Long id){
@@ -42,7 +44,7 @@ public class MedicoService {
 	}
 	
 	@Transactional
-	public void atualizar(AtualizacaoMedicoDTO dados) throws ApplicationException {
+	public DadosDetalhamentoMedicoDTO atualizar(AtualizacaoMedicoDTO dados) throws ApplicationException {
 		Optional<MedicoVO> medico = this.buscarMedicoPorId(dados.id());
 		if(medico.isPresent()) {
 			medico.get().setNome(dados.nome());
@@ -54,6 +56,8 @@ public class MedicoService {
 		}else {
 			throw new ApplicationException("Médico não localizado na base de dados");
 		}
+
+		return new DadosDetalhamentoMedicoDTO(medico.get());
 	}
 	
 	@Transactional

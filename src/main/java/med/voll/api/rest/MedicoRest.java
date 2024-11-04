@@ -3,6 +3,8 @@ package med.voll.api.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import med.voll.api.dtos.AtualizacaoMedicoDTO;
 import med.voll.api.dtos.CadastroMedicoDTO;
+import med.voll.api.dtos.DadosDetalhamentoMedicoDTO;
 import med.voll.api.dtos.DadosListagemMedico;
 import med.voll.api.exceptions.ApplicationException;
 import med.voll.api.service.MedicoService;
@@ -32,22 +35,29 @@ public class MedicoRest {
 	}
 	
 	@GetMapping
-	public Page<DadosListagemMedico> listar(Pageable paginacao){
-		return medicoService.listar(paginacao);
+	public ResponseEntity<Page<DadosListagemMedico>> listar(Pageable paginacao){
+		return ResponseEntity.ok(medicoService.listar(paginacao));
 	}
 	
 	@PutMapping
-	public void atualizar(@RequestBody @Valid AtualizacaoMedicoDTO dados) {
+	public ResponseEntity<DadosDetalhamentoMedicoDTO> atualizar(@RequestBody @Valid AtualizacaoMedicoDTO dados) {		
 		try {
-			medicoService.atualizar(dados);
-		}catch(ApplicationException e) {
+			DadosDetalhamentoMedicoDTO retornoAtualizacao = medicoService.atualizar(dados);
+			return ResponseEntity.ok(retornoAtualizacao);
+		} catch (ApplicationException e) {
 			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		} catch (Exception e) {
+			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
+
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/{id}")
-	public void excluir(@PathVariable Long id) {
+	public ResponseEntity excluir(@PathVariable Long id) {
 		medicoService.excluir(id);
+		return ResponseEntity.noContent().build(); //204
 	}
 }
 
