@@ -23,7 +23,6 @@ import med.voll.api.dtos.AtualizacaoMedicoDTO;
 import med.voll.api.dtos.CadastroMedicoDTO;
 import med.voll.api.dtos.DadosDetalhamentoMedicoDTO;
 import med.voll.api.dtos.DadosListagemMedico;
-import med.voll.api.exceptions.ApplicationException;
 import med.voll.api.service.MedicoService;
 import med.voll.api.vo.MedicoVO;
 
@@ -53,16 +52,7 @@ public class MedicoRest {
 	
 	@PutMapping
 	public ResponseEntity<DadosDetalhamentoMedicoDTO> atualizar(@RequestBody @Valid AtualizacaoMedicoDTO dados) {		
-		try {
-			DadosDetalhamentoMedicoDTO retornoAtualizacao = medicoService.atualizar(dados);
-			return ResponseEntity.ok(retornoAtualizacao); //200
-		} catch (ApplicationException e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-		} catch (Exception e) {
-			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-		}
-
+		return ResponseEntity.ok(medicoService.atualizar(dados)); //200
 	}
 	
 	@DeleteMapping("/{id}")
@@ -73,14 +63,8 @@ public class MedicoRest {
 	
 
 	@GetMapping("/{id}")
-	public ResponseEntity detalhar(@PathVariable Long id) throws ApplicationException {		
-		Optional<MedicoVO> medicoBuscado = medicoService.buscarMedicoPorId(id);
-
-		if(medicoBuscado.isPresent()) {
-			return ResponseEntity.ok(new DadosDetalhamentoMedicoDTO(medicoBuscado.get()));
-		}else {
-			throw new ApplicationException("Medico de id ".concat(String.valueOf(id)).concat(" não localizado."));
-		}
+	public ResponseEntity detalhar(@PathVariable Long id)  {		
+		return ResponseEntity.ok(new DadosDetalhamentoMedicoDTO(medicoService.buscarMedicoPorId(id))); //200
 	}
 }
 

@@ -1,5 +1,6 @@
 package med.voll.api.rest;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,9 @@ public class TesteAPI {
 	 * ou cadastro de paciente individualmente na base de dados*/
 	@GetMapping(path = "/1")
 	public void teste1() {
-		Optional<MedicoVO> medicoCadastrado = medicoService.buscarMedicoPorId(3L);
+		MedicoVO medicoVO = medicoService.buscarMedicoPorId(3L);
 
-		if (medicoCadastrado.isPresent()) {
-			MedicoVO medicoVO = medicoCadastrado.get();
+		if (Objects.nonNull(medicoVO)) {
 			
 			CadastroPacienteDTO cadastroPaciente1DTO = new CadastroPacienteDTO("Lucas","lucasbonine@live.com",medicoVO);
 			CadastroPacienteDTO cadastroPaciente2DTO = new CadastroPacienteDTO("Maiara","maiaratorchelsen@gmail.com",medicoVO);
@@ -64,11 +64,11 @@ public class TesteAPI {
 	@GetMapping(path = "/2")
 	public void teste2(@RequestParam(required = false) Long id) {
 	    if (id != null) {
-	        Optional<MedicoVO> medicoRecuperadoBD = medicoService.buscarMedicoPorId(id);
+	        MedicoVO medicoRecuperadoBD = medicoService.buscarMedicoPorId(id);
 	        
-	        if (medicoRecuperadoBD.isPresent()) {
-	            System.out.println("Lista de pacientes do médico " + medicoRecuperadoBD.get().getNome());
-	            medicoRecuperadoBD.get().getListaPacientes().forEach(p -> System.out.println(p.toString()));
+	        if (Objects.nonNull(medicoRecuperadoBD)) {
+	            System.out.println("Lista de pacientes do médico " + medicoRecuperadoBD.getNome());
+	            medicoRecuperadoBD.getListaPacientes().forEach(p -> System.out.println(p.toString()));
 	        } else {
 	            System.out.println("Médico com o ID fornecido não foi encontrado.");
 	        }
@@ -76,6 +76,5 @@ public class TesteAPI {
 	        System.out.println("ID do médico não fornecido.");
 	    }
 	}
-
 
 }
