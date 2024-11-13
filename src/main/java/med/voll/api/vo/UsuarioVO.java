@@ -1,5 +1,12 @@
 package med.voll.api.vo;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
-public class UsuarioVO {
+public class UsuarioVO implements UserDetails {
 	
 	
 	@Id
@@ -38,7 +45,17 @@ public class UsuarioVO {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+	}
+	@Override
+	public String getPassword() {
+		return senha;
+	}
+	@Override
+	public String getUsername() {
+		return login;
+	}
 
 }

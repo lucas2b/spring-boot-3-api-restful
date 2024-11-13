@@ -14,7 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import med.voll.api.dtos.CadastroMedicoDTO;
-import med.voll.api.dtos.Especialidade;
+import med.voll.api.enums.Especialidade;
 
 @Entity(name = "MedicoEntity")
 @Table(name = "medicos")
