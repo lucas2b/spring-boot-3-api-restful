@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import med.voll.api.repository.UsuarioRepository;
 
-@Service
+@Service //anotação que indica ao Spring que são configurações do framework
 public class AutenticacaoService implements UserDetailsService{
 	
 	@Autowired
