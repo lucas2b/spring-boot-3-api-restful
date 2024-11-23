@@ -1,12 +1,10 @@
 package med.voll.api.rest;
 
 import java.net.URI;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +36,7 @@ public class MedicoRest {
 	 * o Body com o objeto criado e 
 	 * uma URI com o endereço do recurso criado no header
 	 */
+	@SuppressWarnings("rawtypes")
 	@PostMapping
 	public ResponseEntity cadastrar(@RequestBody @Valid CadastroMedicoDTO dados, UriComponentsBuilder uriBuilder) {
 		MedicoVO medicoCriado = medicoService.cadastrar(dados);
@@ -55,6 +54,7 @@ public class MedicoRest {
 		return ResponseEntity.ok(medicoService.atualizar(dados)); //200
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/{id}")
 	public ResponseEntity excluir(@PathVariable Long id) {
 		medicoService.excluir(id);
@@ -62,6 +62,7 @@ public class MedicoRest {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	@GetMapping("/{id}")
 	public ResponseEntity detalhar(@PathVariable Long id)  {		
 		return ResponseEntity.ok(new DadosDetalhamentoMedicoDTO(medicoService.buscarMedicoPorId(id))); //200
