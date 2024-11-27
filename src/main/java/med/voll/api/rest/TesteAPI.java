@@ -1,5 +1,6 @@
 package med.voll.api.rest;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -76,5 +77,16 @@ public class TesteAPI {
 	        System.out.println("ID do médico não fornecido.");
 	    }
 	}
+	
+	
+	//Trazer VO de médico com lista de pacientes aninhado
+	@GetMapping(path = "/3")
+	public void teste3() {
+		
+		List<MedicoVO> listaMedicos = medicoService.listarSemPaginacao();
+		listaMedicos.forEach(m -> System.out.println(m.toString()));
+
+	}
+		
 
 }

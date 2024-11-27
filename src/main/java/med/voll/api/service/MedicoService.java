@@ -1,5 +1,6 @@
 package med.voll.api.service;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,10 @@ public class MedicoService {
 	
 	public Page<DadosListagemMedico> listar(Pageable paginacao){
 		return  medicoRepository.findAll(paginacao).map(DadosListagemMedico::new);
+	}
+	
+	public List<MedicoVO> listarSemPaginacao() {
+		return medicoRepository.findAll();
 	}
 	
 	public MedicoVO buscarMedicoPorId(Long id){
