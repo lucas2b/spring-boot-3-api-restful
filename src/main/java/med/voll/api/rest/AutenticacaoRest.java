@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import med.voll.api.dtos.DadosAutenticacaoDTO;
+import med.voll.api.dtos.DadosTokenJWT;
 import med.voll.api.service.TokenService;
 import med.voll.api.vo.UsuarioVO;
 
@@ -33,7 +34,9 @@ public class AutenticacaoRest {
 		Authentication authentication = manager.authenticate(token); //chama loadUserByUsername do AutenticacaoService
 		                                                             //devolve uma instância do UsuarioVO porém convertido
 		
-		return ResponseEntity.ok((tokenService.gerarToken((UsuarioVO) authentication.getPrincipal()))); //retorna um 200 e no corpo um token com validade de 2hrs
+		String tokenJWT = tokenService.gerarToken((UsuarioVO) authentication.getPrincipal());
+		
+		return ResponseEntity.ok(new DadosTokenJWT(tokenJWT)); //retorna um 200 e no corpo um token com validade de 2hrs
 	}
 
 }
