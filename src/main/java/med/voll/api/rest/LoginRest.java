@@ -18,7 +18,7 @@ import med.voll.api.vo.UsuarioVO;
 
 @RestController
 @RequestMapping("/login")
-public class AutenticacaoRest {
+public class LoginRest {
 	
 	@Autowired
 	private AuthenticationManager manager;
@@ -31,7 +31,7 @@ public class AutenticacaoRest {
 	public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacaoDTO dados) {
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
 		
-		Authentication authentication = manager.authenticate(token); //chama loadUserByUsername do AutenticacaoService
+		Authentication authentication = manager.authenticate(token); //chama loadUserByUsername do LoginService
 		                                                             //devolve uma instância do UsuarioVO porém convertido
 		
 		String tokenJWT = tokenService.gerarToken((UsuarioVO) authentication.getPrincipal());
